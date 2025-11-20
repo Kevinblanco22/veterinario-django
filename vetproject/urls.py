@@ -16,7 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from veterinariaproject.clinic.views import IndexView
+from clinic.views import IndexView
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
