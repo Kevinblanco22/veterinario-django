@@ -1,0 +1,19 @@
+{% extends 'clinic/base.html' %}
+
+{% block content %}
+<h2>Mascotas recientes</h2>
+
+{% if latest_pets_list %}
+    <ul>
+    {% for pet in latest_pets_list %}
+        <li>
+            <a href="{% url 'clinic:pet_detail' pet.id %}">
+                {{ pet.name }} ({{ pet.species }}) — Dueño: {{ pet.owner.name }}
+            </a>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No hay mascotas registradas.</p>
+{% endif %}
+{% endblock %}

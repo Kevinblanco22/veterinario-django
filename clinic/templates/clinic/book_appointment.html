@@ -1,0 +1,24 @@
+{% extends 'clinic/base.html' %}
+
+{% block content %}
+<h2>Agendar cita para {{ pet.name }}</h2>
+
+<form method="post">
+    {% csrf_token %}
+    <p>
+        <label for="date">Fecha y hora:</label>
+        <input type="text" name="date" id="date" placeholder="YYYY-MM-DD HH:MM">
+    </p>
+
+    <p>
+        <label for="reason">Motivo:</label>
+        <input type="text" name="reason" id="reason">
+    </p>
+
+    <button type="submit">Guardar cita</button>
+</form>
+
+<br>
+
+<a href="{% url 'clinic:pet_detail' pet.id %}" class="btn">Volver</a>
+{% endblock %}

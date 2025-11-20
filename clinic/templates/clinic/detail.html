@@ -1,0 +1,30 @@
+{% extends 'clinic/base.html' %}
+
+{% block content %}
+<h2>Detalle de {{ pet.name }}</h2>
+
+<div class="card">
+    <p><strong>Especie:</strong> {{ pet.species }}</p>
+    <p><strong>Dueño:</strong> {{ pet.owner.name }} ({{ pet.owner.phone }} — {{ pet.owner.email }})</p>
+    <p><strong>Fecha de nacimiento:</strong> {{ pet.birth_date }}</p>
+</div>
+
+<h3>Citas registradas</h3>
+
+{% if pet.appointment_set.all %}
+    <ul>
+        {% for appointment in pet.appointment_set.all %}
+            <li>
+                <strong>{{ appointment.date }}</strong> — {{ appointment.reason }}
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No hay citas para esta mascota.</p>
+{% endif %}
+
+<br>
+
+<a href="{% url 'clinic:book_appointment' pet.id %}" class="btn">Agendar nueva cita</a>
+
+{% endblock %}
